@@ -48,7 +48,7 @@ ConfigFlow consists of five intelligent engines working in harmony:
 
 ```bash
 # Clone the repository
-git clone https://github.com/joss12/configflow.git
+git clone https://github.com/yourusername/configflow.git
 cd configflow
 
 # Install dependencies
@@ -66,7 +66,47 @@ npm link
 configflow --help
 ```
 
-## 🎯 Quick Start Guide
+## 🧪 Testing ConfigFlow
+
+### Basic Functionality Test
+
+Once ConfigFlow is running, you can test its intelligent monitoring by making configuration changes:
+
+```bash
+# Test 1: Create a new configuration file
+echo '{"test": "value", "timeout": 5000}' > test-config.json
+
+# Test 2: Modify an existing configuration
+echo '{"test": "value"}' > test-config.json
+
+# Test 3: Append to an existing configuration
+echo '{"newField": 123}' >> package.json
+```
+
+**What you should see in ConfigFlow logs:**
+```
+📝 Config added: test-config.json
+📝 Recorded config change: added in test-config.json
+🔄 Config file changed: test-config.json
+📝 Config change: test-config.json
+📝 Recorded config change: change in test-config.json
+```
+
+**After 2-3 minutes, you should see optimization suggestions:**
+```
+🤖 Generated X new optimization suggestions
+🏆 Top Optimization Suggestions:
+   1. 🔴 Reduce memory usage by 10-20%
+      File: system
+      Confidence: 80.0%
+      Risk: medium
+```
+
+**Clean up test files:**
+```bash
+rm test-config.json
+git checkout package.json  # Restore original package.json
+```
 
 ### 1. Start ConfigFlow Engine
 ```bash

@@ -13,7 +13,15 @@
     "cli:report": "ts-node src/cli/index.ts report",
     "cli:interactive": "ts-node src/cli/index.ts interactive",
     "cli:info": "ts-node src/cli/index.ts info",
-    "cli:suggestions": "ts-node src/cli/index.ts suggestions"
+    "cli:suggestions": "ts-node src/cli/index.ts suggestions",
+    "docker:build": "docker build -t configflow:latest .",
+    "docker:run": "docker run -p 3001:3001 configflow:latest",
+    "docker:compose": "docker-compose up -d",
+    "docker:logs": "docker-compose logs -f",
+    "docker:stop": "docker-compose down",
+    "clean": "rm -rf dist .configflow/data/* .configflow/logs/*",
+    "health": "curl -f http://localhost:3001/health",
+    "version": "echo $npm_package_version"
   },
   "keywords": [
     "configuration",
@@ -21,7 +29,7 @@
     "automation",
     "performance"
   ],
-  "author": "Your Name",
+  "author": "Eddy Mouity",
   "license": "MIT",
   "dependencies": {
     "chokidar": "^3.5.3",

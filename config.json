@@ -1,0 +1,15 @@
+{
+  "metrics": {
+    "interval": 10000,
+    "retention": "24h"
+  },
+  "autoTuning": {
+    "enabled": true,
+    "safetyMode": true,
+    "riskThreshold": "low",
+    "maxConcurrentChanges": 1
+  },
+  "monitoring": {
+    "excludePatterns": ["**/node_modules/**", "**/dist/**", "**/.git/**"]
+  }
+}

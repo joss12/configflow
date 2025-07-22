@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  configflow:
+    build: .
+    container_name: configflow
+    restart: unless-stopped
+    ports:
+      - "3001:3001"  # Health check endpoint
+    volumes:
+      - configflow_data:/app/.configflow
+      - ./config:/app/monitored_configs:ro  # Mount config directory for monitoring
+    environment:
+      - NODE_ENV=production
+      - CONFIGFLOW_METRICS_INTERVAL=10000
+      - CONFIGFLOW_SAFETY_MODE=true
+      - CONFIGFLOW_RISK_THRESHOLD=low
+      - CONFIGFLOW_MAX_CONCURRENT_CHANGES=1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "com.configflow.description=ConfigFlow Autonomous Configuration Manager"
+      - "com.configflow.version=1.0.0"
+
+  # Optional: Metrics storage (for production setups)
+  # influxdb:
+  #   image: influxdb:2.7
+  #   container_name: configflow_metrics
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8086:8086"
+  #   volumes:
+  #     - influxdb_data:/var/lib/influxdb2
+  #   environment:
+  #     - INFLUXDB_DB=configflow
+  #     - INFLUXDB_ADMIN_USER=admin
+  #     - INFLUXDB_ADMIN_PASSWORD=configflow123
+
+  # Optional: Grafana for metrics visualization
+  # grafana:
+  #   image: grafana/grafana:10.0.0
+  #   container_name: configflow_dashboard
+  #   restart: unless-stopped
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - grafana_data:/var/lib/grafana
+  #   environment:
+  #     - GF_SECURITY_ADMIN_PASSWORD=configflow123
+  #   depends_on:
+  #     - influxdb
+
+volumes:
+  configflow_data:
+    driver: local
+  # influxdb_data:
+  #   driver: local
+  # grafana_data:
+  #   driver: local
+
+networks:
+  default:
+    name: configflow_network
