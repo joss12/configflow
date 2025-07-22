@@ -1,0 +1,46 @@
+{
+  "name": "configflow",
+  "version": "1.0.0",
+  "description": "Autonomous Configuration Manager - Intelligent config optimization without AI",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cli": "ts-node src/cli/index.ts",
+    "cli:status": "ts-node src/cli/index.ts status",
+    "cli:report": "ts-node src/cli/index.ts report",
+    "cli:interactive": "ts-node src/cli/index.ts interactive",
+    "cli:info": "ts-node src/cli/index.ts info",
+    "cli:suggestions": "ts-node src/cli/index.ts suggestions"
+  },
+  "keywords": [
+    "configuration",
+    "optimization",
+    "automation",
+    "performance"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "fs-extra": "^11.1.1",
+    "chalk": "^4.1.2",
+    "pidusage": "^3.0.2",
+    "commander": "^11.0.0",
+    "inquirer": "^9.2.7",
+    "cli-table3": "^0.6.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6",
+    "ts-node": "^10.9.1",
+    "@types/node": "^20.5.0",
+    "@types/fs-extra": "^11.0.1",
+    "@types/pidusage": "^2.0.2",
+    "@types/inquirer": "^9.0.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
