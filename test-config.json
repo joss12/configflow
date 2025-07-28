@@ -1,4 +1,1 @@
-{
-    "test": "value",
-    "timeout": 5000
-}
+{"test": "value", "timeout": 5000}
